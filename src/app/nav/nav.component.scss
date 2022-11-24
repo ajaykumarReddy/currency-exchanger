@@ -1,0 +1,31 @@
+.header {
+    height: 85px;
+    width: 100%;
+    border: 1px solid var(--white);
+    padding: 10px 20px;
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .navbar-list {
+            display: flex;
+            gap: 2rem;
+
+            .navbar-link {
+                border: 1px solid white;
+                padding: 6px 12px;
+                border-radius: 4px;
+                transition: 200ms;
+                &:hover {
+                    background-color: var(--black);
+                }
+            }
+        }
+    }
+
+    .router-link-active {
+        background-color: var(--black);
+    }
+}

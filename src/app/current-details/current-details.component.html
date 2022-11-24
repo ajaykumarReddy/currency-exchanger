@@ -1,1 +1,47 @@
-<p>current-details works!</p>
+<div class="current-exchange-container">
+  <div>
+    <h1>EUR - European Union Euro</h1>
+  </div>
+  <div class="exchange-body">
+    <div class="section-1">
+      <div class="amount">
+        <div class="form-field">
+          <label for="amount">Amount</label>
+          <input class="input-field" type="text" />
+        </div>
+        <div class="form-field">
+          <label for="amount-info">Amount</label>
+          <input class="input-field" type="text" />
+        </div>
+      </div>
+      <div class="convetor">
+        <div class="from-to">
+          <div class="form-field">
+            <label for="from">From</label>
+            <select class="section-field">
+              <option *ngFor="let item of list" [value]="item">
+                {{ item }}
+              </option>
+            </select>
+          </div>
+          <div>====</div>
+          <div class="form-field">
+            <label for="from">From</label>
+            <select class="section-field">
+              <option *ngFor="let item of list" [value]="item">
+                {{ item }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="btn">
+          <button>Convetor</button>
+        </div>
+        <div class="usd">
+          <div>xxx.USD</div>
+        </div>
+      </div>
+    </div>
+    <div class="section-2"></div>
+  </div>
+</div>

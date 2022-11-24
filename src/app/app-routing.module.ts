@@ -1,6 +1,4 @@
-// import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { CurrentDetailsComponent } from './current-details/current-details.component';
+import { Routes } from '@angular/router';
 import { CurrentExchangeComponent } from './current-exchange/current-exchange.component';
 
 export const routes: Routes = [

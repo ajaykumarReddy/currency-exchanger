@@ -1,1 +1,77 @@
-<p>current-exchange works!</p>
+<div class="current-exchange-container">
+  <div>
+    <h1>Currency Exchanger</h1>
+  </div>
+  <div class="exchange-body">
+    <div class="section-1">
+      <div class="amount">
+        <div class="form-field">
+          <label for="amount">Amount</label>
+          <input
+            [(ngModel)]="convertorObj.amount"
+            class="input-field"
+            type="number"
+            min="0"
+          />
+        </div>
+        <div class="form-field">
+          <label for="amount-info">Amount</label>
+          <input
+            readonly
+            class="input-field"
+            type="text"
+            [value]="res?.info?.rate"
+          />
+        </div>
+      </div>
+      <div class="convetor">
+        <div class="from-to">
+          <div class="form-field">
+            <label for="from">From</label>
+            <select class="section-field" [(ngModel)]="convertorObj.from">
+              <ng-container *ngIf="symbols$ | async as symbols">
+                <option
+                  *ngFor="let item of symbols | keyvalue"
+                  [value]="item.key"
+                >
+                  {{ item.key }}
+                </option>
+              </ng-container>
+            </select>
+          </div>
+          <div>====</div>
+          <div class="form-field">
+            <label for="from">From</label>
+            <select class="section-field" [(ngModel)]="convertorObj.to">
+              <ng-container *ngIf="symbols$ | async as symbols">
+                <option
+                  *ngFor="let item of symbols | keyvalue"
+                  [value]="item.key"
+                >
+                  {{ item.key }}
+                </option>
+              </ng-container>
+            </select>
+          </div>
+        </div>
+        <div>
+          <button class="btn" (click)="convertor()">Convetor</button>
+        </div>
+        <div class="usd">
+          <div>
+            <div class="form-field">
+              <input
+                readonly
+                class="input-field"
+                type="text"
+                [value]="res?.result ? res?.result : 'XXX' + ' ' +convertorObj.to"
+              />
+            </div>
+          </div>
+          <a [routerLink]="['/details']" class="btn">More Details</a>
+        </div>
+      </div>
+    </div>
+    <div class="section-2"></div>
+  </div>
+</div>

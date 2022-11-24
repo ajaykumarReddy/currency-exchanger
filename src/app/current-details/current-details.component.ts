@@ -6,8 +6,8 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './current-details.component.html',
-  styleUrls: ['./current-details.component.scss']
+  styleUrls: ['./current-details.component.scss'],
 })
 export class CurrentDetailsComponent {
-
+  list = [1, 2, 3, 4];
 }
