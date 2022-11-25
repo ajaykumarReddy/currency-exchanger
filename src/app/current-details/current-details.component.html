@@ -1,4 +1,5 @@
-
 <div class="card">
-     {{historicalData$ | async | json}}
+     <ng-container *ngIf="historicalData$ | async as data">
+          <app-time-histroy-chart [data]="data"></app-time-histroy-chart>
+     </ng-container>
 </div>

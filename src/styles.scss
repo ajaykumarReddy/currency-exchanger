@@ -15,6 +15,7 @@
     --orange-red_a20: hsla(19, 100%, 55%, 0.2);
     --eerie-black: hsl(210, 11%, 15%);
     --blue-1: hsl(223, 100%, 55%);
+    --blue-2: hsl(223, 100%, 40%);
     --davys-gray: hsl(0, 0%, 33%);
     --white_a80: hsla(0, 0%, 100%, 0.8);
     --white_a75: hsla(0, 0%, 100%, 0.75);
@@ -187,4 +188,7 @@ body.loaded {
         opacity: 0.5;
         cursor: not-allowed;
     }
+    &:active, &:focus {
+        background-color: var(--blue-2);
+      }
 }

@@ -1,8 +1,9 @@
 <div class="currency-header">
   <h1>
-    <span *ngIf="coin">{{ coin }}</span> <span *ngIf="name">{{ name }}</span>
+    <span *ngIf="coin">{{ coin }} - </span> <span *ngIf="name"> {{ name }}</span>
   </h1>
-  <button *ngIf="hideBtn" (click)="gotToHome.emit()" class="btn">
+  <button *ngIf="coin" (click)="goToHome()" class="btn">
     Back to Home
   </button>
+
 </div>

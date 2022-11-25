@@ -1,0 +1,11 @@
+#chart {
+    width: 100%;
+}
+
+:host {
+    display: block;
+    width: 100%;
+    background-color: darkgray;
+    height: calc(100vh - 300px);
+    overflow: auto;
+}

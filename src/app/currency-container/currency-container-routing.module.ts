@@ -14,7 +14,7 @@ const routes: Routes = [
         component: CurrentExchangeComponent,
       },
       {
-        path: 'details',
+        path: 'details/:coin/:name',
         component: CurrentDetailsComponent,
       },
       {

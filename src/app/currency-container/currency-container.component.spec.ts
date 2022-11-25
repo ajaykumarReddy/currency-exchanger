@@ -2,8 +2,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-
 import { CurrencyContainerComponent } from './currency-container.component';
+import { CurrencyConvetorComponent } from './currency-convetor/currency-convetor.component';
+import { CurrencyHeaderComponent } from './currency-header/currency-header.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
 
 describe('CurrencyContainerComponent', () => {
   let component: CurrencyContainerComponent;
@@ -11,9 +15,13 @@ describe('CurrencyContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CurrencyContainerComponent ]
-    })
-    .compileComponents();
+      imports: [HttpClientTestingModule, RouterTestingModule, FormsModule],
+      declarations: [
+        CurrencyContainerComponent,
+        CurrencyConvetorComponent,
+        CurrencyHeaderComponent,
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

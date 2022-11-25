@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpService } from '../http.service';
 import { FormsModule } from '@angular/forms';
-import { EMPTY, map } from 'rxjs';
-import { ConvertorResponse, IConvertor } from '../interfaces';
 import { RouterModule } from '@angular/router';
 import { CommunicationService } from '../communication.service';
 
@@ -16,6 +13,13 @@ import { CommunicationService } from '../communication.service';
 })
 export class CurrentExchangeComponent {
   currency$ = this.communicationService.selectedCurrency$;
+  cardsList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  constructor(private communicationService: CommunicationService) {}
 
-  constructor(private communicationService: CommunicationService){}
+  ngOnInit(): void {
+    this.communicationService.sendHeaderInfo({
+      coin: '',
+      name: 'Currency Exchanger',
+    });
+  }
 }

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { map, of, tap } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil, tap, map } from 'rxjs/operators';
 import { CommunicationService } from 'src/app/communication.service';
 import { HttpService } from 'src/app/http.service';
 import { ConvertorResponse, IConvertor, Symbols } from 'src/app/interfaces';
@@ -14,17 +15,21 @@ export class CurrencyConvetorComponent implements OnInit {
   convertorObj: IConvertor = { from: '', to: '', amount: 0 };
   res!: ConvertorResponse | null;
   symbols!: Symbols;
-  name = 'Currency Exchanger';
-  hideBtn = false;
-  
+  isDetails = true;
+  headerInfo$ = this.communicationService.headerInfo$.pipe(
+    tap((res) => {
+      this.isDetails = res.coin ? false : true;
+      this.convertorObj.from = res.coin;
+    })
+  );
+
   symbols$ = this.httpService.getSymbols().pipe(
     map((res) => {
       return res.success ? res.symbols : {};
     }),
     tap((res) => (this.symbols = res))
   );
-
-  @Output() convertorDetails = new EventEmitter<{name: string, coin: string}>();
+  private destroy$ = new Subject();
 
   constructor(
     private httpService: HttpService,
@@ -35,29 +40,39 @@ export class CurrencyConvetorComponent implements OnInit {
   ngOnInit(): void {}
 
   convertor() {
-    this.httpService.convertTo(this.convertorObj).subscribe({
-      next: (res) => {
-        this.res = res.success ? res : null;
-        this.communicationService.sendCurrencyInfo(res);
-      },
-      error: (err) => {
-        console.error('error in API call...', err);
-      },
-    });
+    this.httpService
+      .convertTo(this.convertorObj)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (res) => {
+          this.res = res.success ? res : null;
+          this.communicationService.sendCurrencyInfo(res);
+        },
+        error: (err) => {
+          console.error('error in API call...', err);
+        },
+      });
   }
 
-  goToDetails() {
+  goToDetails(): void {
     if (this.res) {
-      this.res.name = this.symbols[this.convertorObj.to];
-      // this.convertorDetails.emit({coin: this.convertorObj.from, name: this.res.name});
+      this.res.name = this.symbols[this.convertorObj.from];
       this.communicationService.sendCurrencyInfo(this.res);
-      this.router.navigateByUrl('/convertor/details');
+      this.router.navigateByUrl(
+        `/convertor/details/${this.convertorObj.from}/${this.res.name}`
+      );
     }
   }
 
-  swapCurrency() {
+  swapCurrency(): void {
     const { from, to } = this.convertorObj;
     this.convertorObj.to = from;
     this.convertorObj.from = to;
+    this.res = null;
+  }
+
+  reset(): void {
+    this.res = null;
+    this.convertorObj = { from: '', to: '', amount: 0 };
   }
 }
