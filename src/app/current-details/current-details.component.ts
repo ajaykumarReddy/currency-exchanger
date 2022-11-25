@@ -65,7 +65,7 @@ export class CurrentDetailsComponent {
     });
   }
 
-  ngDestroy() {
+  ngOnDestroy(): void {
     this.destroy$.next(null);
     this.destroy$.complete();
   }
