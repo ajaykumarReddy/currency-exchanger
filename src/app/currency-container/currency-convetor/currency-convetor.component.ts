@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil, tap, map } from 'rxjs/operators';
@@ -11,7 +11,7 @@ import { ConvertorResponse, IConvertor, Symbols } from 'src/app/interfaces';
   templateUrl: './currency-convetor.component.html',
   styleUrls: ['./currency-convetor.component.scss'],
 })
-export class CurrencyConvetorComponent implements OnInit {
+export class CurrencyConvetorComponent  {
   convertorObj: IConvertor = { from: '', to: '', amount: 0 };
   res!: ConvertorResponse | null;
   symbols!: Symbols;
@@ -37,7 +37,6 @@ export class CurrencyConvetorComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
 
   convertor() {
     this.httpService
@@ -71,7 +70,7 @@ export class CurrencyConvetorComponent implements OnInit {
     this.res = null;
   }
 
-  reset(): void {
+  resetCurrency(): void {
     this.res = null;
     this.convertorObj = { from: '', to: '', amount: 0 };
   }

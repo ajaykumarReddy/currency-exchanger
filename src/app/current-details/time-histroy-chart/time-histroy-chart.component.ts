@@ -1,16 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
-import {
-  ChartComponent,
-  ApexAxisChartSeries,
-  ApexChart,
-  ApexXAxis,
-  ApexDataLabels,
-  ApexTitleSubtitle,
-  ApexStroke,
-  ApexGrid,
-} from 'ng-apexcharts';
+// import {
+//   ChartComponent,
+//   ApexAxisChartSeries,
+//   ApexChart,
+//   ApexXAxis,
+//   ApexDataLabels,
+//   ApexTitleSubtitle,
+//   ApexStroke,
+//   ApexGrid,
+// } from 'ng-apexcharts';
 
 // export type ChartOptions = {
 //   series: ApexAxisChartSeries | undefined;
@@ -31,12 +31,11 @@ import { NgApexchartsModule } from 'ng-apexcharts';
   styleUrls: ['./time-histroy-chart.component.scss'],
 })
 export class TimeHistroyChartComponent implements OnInit {
-  @ViewChild('chart') chart!: ChartComponent;
+  // @ViewChild('chart') chart!: ChartComponent;
   public chartOptions: any;
 
   @Input() data!: number[];
 
-  constructor() {}
 
   ngOnInit() {
     this.initChartData(this.data);

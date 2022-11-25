@@ -46,7 +46,7 @@ export class CurrentDetailsComponent {
     this.historicalData$ = this.communicationService.selectedCurrency$.pipe(
       switchMap((res) => {
         if (res) {
-          const { from, to } = res?.query;
+          const { from, to } = res.query;
           return this.httpService
             .timeSeries(start_date, end_date, from, `${from},${to}`)
             .pipe(

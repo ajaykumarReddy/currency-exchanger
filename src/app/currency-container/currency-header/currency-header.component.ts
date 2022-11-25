@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,14 +10,14 @@ export class CurrencyHeaderComponent {
   @Input() coin!: string;
   @Input() name!: string;
 
-  @Output() reset = new EventEmitter();
+  @Output() resetCurrency = new EventEmitter();
 
   constructor(private router: Router) {}
 
   goToHome() {
     this.name = 'Currency Exchanger';
     this.coin = '';
-    this.reset.emit();
+    this.resetCurrency.emit();
     this.router.navigateByUrl('/convertor/exchange');
   }
 

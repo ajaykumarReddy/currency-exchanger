@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { ConvertorResponse } from './interfaces';
 
 @Injectable({
@@ -15,8 +15,6 @@ export class CommunicationService {
   public headerInfo$ = this.headerInfo.asObservable();
 
   public selectedCurrency$ = this.selectedCurrency.asObservable();
-
-  constructor() {}
 
   sendCurrencyInfo(info: ConvertorResponse) {
     this.selectedCurrency.next(info);

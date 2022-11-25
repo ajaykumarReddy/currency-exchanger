@@ -1,7 +1,5 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 import { CurrencyContainerComponent } from './currency-container.component';
 import { CurrencyConvetorComponent } from './currency-convetor/currency-convetor.component';
 import { CurrencyHeaderComponent } from './currency-header/currency-header.component';
