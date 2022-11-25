@@ -18,7 +18,8 @@ export interface ConvertorResponse {
   query: Query
   info: Info
   date: string
-  result: number
+  result: number,
+  name?: string
 }
 
 export interface Query {

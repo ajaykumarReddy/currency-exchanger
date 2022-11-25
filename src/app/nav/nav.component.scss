@@ -14,18 +14,18 @@
             gap: 2rem;
 
             .navbar-link {
-                border: 1px solid white;
+                border: 1px solid var(--white);
                 padding: 6px 12px;
                 border-radius: 4px;
                 transition: 200ms;
                 &:hover {
-                    background-color: var(--black);
+                    background-color: var(--blue-1);
                 }
             }
         }
     }
 
     .router-link-active {
-        background-color: var(--black);
+        background-color: var(--blue-1);
     }
 }

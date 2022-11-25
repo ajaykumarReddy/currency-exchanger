@@ -1,0 +1,99 @@
+<div class="current-exchange-container">
+  <app-currency-header [name]="name" [hideBtn]="hideBtn"></app-currency-header>
+  <div class="exchange-body">
+    <div class="section-1">
+      <div class="amount">
+        <div class="form-field">
+          <label for="amount">Amount</label>
+          <input
+            [(ngModel)]="convertorObj.amount"
+            class="input-field"
+            type="number"
+            min="0"
+          />
+        </div>
+        <div class="form-field">
+          <input
+            readonly
+            class="input-field"
+            type="text"
+            [value]="res?.info?.rate"
+          />
+        </div>
+      </div>
+      <div class="convetor">
+        <div class="from-to">
+          <div class="form-field">
+            <label for="from">From</label>
+            <select
+              id="from"
+              [disabled]="convertorObj.amount <= 0"
+              class="section-field"
+              [(ngModel)]="convertorObj.from"
+            >
+              <ng-container *ngIf="symbols$ | async as symbols">
+                <option
+                  *ngFor="let item of symbols | keyvalue"
+                  [value]="item.key"
+                >
+                  {{ item.key }}
+                </option>
+              </ng-container>
+            </select>
+          </div>
+          <div class="arrow-symbol">
+            <i (click)="swapCurrency()" class="fa-solid fa-right-left"></i>
+          </div>
+          <div class="form-field">
+            <label for="to">To</label>
+            <select
+              id="to"
+              [disabled]="convertorObj.amount <= 0"
+              class="section-field"
+              [(ngModel)]="convertorObj.to"
+            >
+              <ng-container *ngIf="symbols$ | async as symbols">
+                <option
+                  *ngFor="let item of symbols | keyvalue"
+                  [value]="item.key"
+                >
+                  {{ item.key }}
+                </option>
+              </ng-container>
+            </select>
+          </div>
+        </div>
+        <div>
+          <button
+            style="width: 100%"
+            [disabled]="!(convertorObj.to && convertorObj.from)"
+            class="btn"
+            (click)="convertor()"
+          >
+            Convetor
+          </button>
+        </div>
+        <div class="usd">
+          <div>
+            <div class="form-field">
+              <input
+                readonly
+                class="input-field result-input"
+                type="text"
+                [value]="
+                  res?.result ? res?.result : 'XXX' + ' ' + convertorObj.to
+                "
+              />
+            </div>
+          </div>
+          <button
+            [disabled]="res?.result ? false : true"
+            (click)="goToDetails()"
+            class="btn">
+            More Details
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

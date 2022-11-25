@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { EMPTY, map } from 'rxjs';
 import { ConvertorResponse, IConvertor } from '../interfaces';
 import { RouterModule } from '@angular/router';
+import { CommunicationService } from '../communication.service';
 
 @Component({
   selector: 'app-current-exchange',
@@ -14,25 +15,7 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./current-exchange.component.scss'],
 })
 export class CurrentExchangeComponent {
-  convertorObj: IConvertor = { from: 'EUR', to: 'USD', amount: 12 };
-  res!: ConvertorResponse | null;
-  symbols$ = this.httpService.getSymbols().pipe(
-    map((res) => {
-      return res.success ? res.symbols : {};
-    })
-  );
+  currency$ = this.communicationService.selectedCurrency$;
 
-  constructor(private httpService: HttpService) {}
-
-  ngOnInit(): void {}
-  convertor() {
-    this.httpService.convertTo(this.convertorObj).subscribe({
-      next: (res) => {
-        this.res = res.success ? res : null;
-      },
-      error: (err) => {
-        console.error('error in API call...', err);
-      },
-    });
-  }
+  constructor(private communicationService: CommunicationService){}
 }
