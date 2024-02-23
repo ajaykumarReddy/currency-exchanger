@@ -1,0 +1,76 @@
+<div class="current-exchange-container">
+    @if (headerInfo(); as info) {
+    <app-currency-header [name]="info.name" [coin]="info.coin" (resetCurrency)="resetCurrency()" />
+    }
+
+    <div class="exchange-body">
+        <div class="section-1">
+            <div class="amount">
+                <div class="form-field">
+                    <label for="amount">Amount</label>
+                    <input [(ngModel)]="convertorObj.amount" class="input-field" type="number" min="0" />
+                </div>
+                <div class="rate-field">
+                    @if (result()?.info?.rate) {
+                    <span>1.00 {{ convertorObj.from }} = {{ result()?.info?.rate }}
+                        {{ convertorObj.to }}</span>
+                    }
+                </div>
+            </div>
+            <div class="convertor">
+                <div class="from-to">
+                    <div class="form-field">
+                        <label for="from">From</label>
+                        <select id="from" [disabled]="convertorObj.amount <= 0 || !isDetails()" class="section-field"
+                            [(ngModel)]="convertorObj.from">
+                            @if (symbolsSignal(); as symbols) {
+                            @for (item of symbols | keyvalue; track item) {
+                            <option [value]="item.key">
+                                {{ item.key }}
+                            </option>
+                            }
+                            }
+                        </select>
+                    </div>
+                    <div class="arrow-symbol">
+                        <i (click)="swapCurrency()" class="fa-solid fa-right-left"></i>
+                    </div>
+                    <div class="form-field">
+                        <label for="to">To</label>
+                        <select id="to" [disabled]="convertorObj.amount <= 0" class="section-field"
+                            [(ngModel)]="convertorObj.to">
+                            @if (symbolsSignal(); as symbols) {
+                            @for (item of symbols | keyvalue; track item) {
+                            <option [value]="item.key">
+                                {{ item.key }}
+                            </option>
+                            }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <button style="width: 100%" [disabled]="!(convertorObj.to && convertorObj.from)" class="btn"
+                        (click)="convertor()">
+                        Convertor
+                    </button>
+                </div>
+                <div class="usd">
+                    <div>
+                        <div class="total-results">
+                            @if (result()?.result) {
+                            {{ result()?.result }} &nbsp; {{ convertorObj.to
+                            }}
+                            }
+                        </div>
+                    </div>
+                    @if (isDetails()) {
+                    <button [disabled]="result()?.result ? false : true" (click)="goToDetails()" class="btn">
+                        More Details
+                    </button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
 
 /*-----------------------------------*\
   #CUSTOM PROPERTY
@@ -188,7 +189,17 @@ body.loaded {
         opacity: 0.5;
         cursor: not-allowed;
     }
-    &:active, &:focus {
+    &:active,
+    &:focus {
         background-color: var(--blue-2);
-      }
+    }
+}
+
+.card {
+    border: 1px solid #e7e7e7;
+    border-radius: 4px;
+    padding: 0.5rem;
+    height: calc(100vh - 410px);
+    overflow: auto;
+    margin-top: 2rem;
 }

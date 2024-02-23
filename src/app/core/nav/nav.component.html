@@ -1,0 +1,21 @@
+<header class="header" data-header>
+    <div class="container">
+        <a [routerLink]="['/']" class="logo">
+            <img src="/assets/angular.png" width="60" height="28" alt="Logo" />
+        </a>
+
+        <nav class="navbar" data-navbar>
+            <ul class="navbar-list">
+                <li class="navbar-item">
+                    <a [routerLink]="['/convertor/exchange']" routerLinkActive="router-link-active"
+                        class="navbar-link">EUR-USD Details</a>
+                </li>
+
+                <li class="navbar-item">
+                    <a [routerLink]="['/convertor/details', 'EUR', 'Euro']" routerLinkActive="router-link-active"
+                        class="label-lg navbar-link has-after">EUR-GBP Details</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
